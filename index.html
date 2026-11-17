@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#09090d">
+  <title>KOVA OS — Agency Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div id="loginScreen" class="login-screen">
+    <div class="login-art">
+      <div class="login-orb orb-one"></div><div class="login-orb orb-two"></div>
+      <div class="login-brand"><span class="brand-mark">K</span><span>KOVA <b>OS</b></span></div>
+      <div class="login-copy">
+        <div class="eyebrow"><span class="live-dot"></span> AGENCY MANAGEMENT SYSTEM</div>
+        <h1>Uma visão.<br><em>Controle total.</em></h1>
+        <p>O centro de comando da KOVA AGENCYA. Dados, pessoas, projetos e decisões em um só lugar.</p>
+      </div>
+      <div class="login-foot">KOVA AGENCYA <span>·</span> DIGITAL SOLUTIONS</div>
+    </div>
+    <div class="login-panel">
+      <form id="loginForm" class="login-card">
+        <div class="mobile-brand"><span class="brand-mark">K</span> KOVA OS</div>
+        <div class="eyebrow">ÁREA RESTRITA</div>
+        <h2>Acesse sua conta</h2>
+        <p class="muted">Entre com suas credenciais autorizadas.</p>
+        <label for="loginUser">E-mail ou usuário</label>
+        <input id="loginUser" autocomplete="username" placeholder="seu usuário ou e-mail" required>
+        <label for="loginPass">Senha</label>
+        <div class="password-wrap"><input id="loginPass" type="password" autocomplete="current-password" placeholder="Sua senha" required><button type="button" id="togglePassword" class="eye-btn" aria-label="Mostrar senha">◉</button></div>
+        <div id="loginError" class="login-error" role="alert"></div>
+        <button class="primary-btn login-submit" type="submit">Entrar no KOVA OS <span>↗</span></button>
+        <div class="login-note"><span class="lock">▣</span> Ambiente de demonstração com perfis de acesso.</div>
+      </form>
+      <div class="login-bottom">© 2026 KOVA AGENCYA. Todos os direitos reservados.</div>
+    </div>
+  </div>
+
+  <div id="appShell" class="app-shell hidden">
+    <aside class="sidebar" id="sidebar">
+      <div class="side-brand"><span class="brand-mark">K</span><div>KOVA <b>OS</b><small>AGENCY MANAGEMENT</small></div></div>
+      <div class="workspace"><span class="workspace-icon">✳</span><div><b>KOVA AGENCYA</b><small>Workspace principal</small></div><span class="chevron">⌄</span></div>
+      <div class="nav-label">WORKSPACE</div>
+      <nav id="mainNav">
+        <button class="nav-item active" data-page="overview"><span>◫</span> Visão geral</button>
+        <button class="nav-item" data-page="crm"><span>◎</span> CRM & Leads <i class="nav-count" id="leadNavCount">8</i></button>
+        <button class="nav-item" data-page="sales"><span>↗</span> Vendas</button>
+        <button class="nav-item" data-page="finance"><span>▤</span> Financeiro</button>
+        <button class="nav-item" data-page="projects"><span>▦</span> Projetos</button>
+        <button class="nav-item" data-page="team"><span>♧</span> Equipe & Comissões</button>
+        <button class="nav-item" data-page="reports"><span>▥</span> Relatórios</button>
+        <button class="nav-item" data-page="insights"><span>✦</span> KOVA INSIGHTS</button>
+        <button class="nav-item" data-page="notifications"><span>◉</span> Notificações</button>
+      </nav>
+      <div class="nav-label admin-label">ADMINISTRAÇÃO</div>
+      <nav>
+        <button class="nav-item" data-page="users"><span>♙</span> Usuários e acessos</button>
+        <button class="nav-item" data-page="settings"><span>⚙</span> Configurações</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="system-status"><span class="live-dot"></span><div><b>Sistema operacional</b><small>Ambiente demonstrativo</small></div></div>
+        <div class="side-user"><div class="avatar" id="sideAvatar">K</div><div class="side-user-info"><b id="sideName">Kauã Oliveira</b><small id="sideRole">Administrador</small></div><button id="logoutBtn" class="logout-btn" title="Sair">↪</button></div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <button class="mobile-menu" id="mobileMenu">☰</button>
+        <div class="breadcrumb">KOVA OS <span>/</span> <b id="currentSection">Visão geral</b></div>
+        <div class="top-actions"><div class="top-date" id="todayLabel"></div><button class="icon-btn" id="quickAdd" title="Adicionar">＋</button><div class="top-avatar" id="topAvatar">K</div></div>
+      </header>
+      <div class="page-content">
+        <section class="page active" id="page-overview">
+          <div class="page-heading"><div><div class="eyebrow">MONITORAMENTO DA AGÊNCIA</div><h1>Visão geral<span class="heading-period"> / mês atual</span></h1><p class="muted">Acompanhe a saúde e o desempenho da KOVA em tempo real.</p></div><div class="heading-actions"><button class="secondary-btn" id="exportOverview">↓ Exportar relatório</button><button class="primary-btn" data-action="transaction" data-finance-only>＋ Nova movimentação</button><button class="secondary-btn" data-action="goal" data-finance-only>Definir meta</button></div></div>
+          <div class="metric-grid">
+            <article class="metric-card" data-finance-only><div class="metric-top"><span>Faturamento recebido</span><span class="metric-icon violet">↗</span></div><div class="metric-value" id="metricRevenue">R$ 8.450,00</div><div class="metric-foot"><span class="positive">↑ 12,8%</span><span>vs. mês anterior</span></div><div class="metric-spark spark-violet"></div></article>
+            <article class="metric-card" data-finance-only><div class="metric-top"><span>Lucro estimado</span><span class="metric-icon green">◈</span></div><div class="metric-value" id="metricProfit">R$ 5.920,00</div><div class="metric-foot"><span class="positive">↑ 8,4%</span><span>após despesas</span></div><div class="metric-spark spark-green"></div></article>
+            <article class="metric-card" data-finance-only><div class="metric-top"><span>Margem de lucro</span><span class="metric-icon blue">％</span></div><div class="metric-value" id="metricMargin">70,1%</div><div class="metric-foot"><span class="positive">Saudável</span><span>margem operacional</span></div><div class="metric-spark spark-blue"></div></article>
+            <article class="metric-card"><div class="metric-top"><span>Clientes conquistados</span><span class="metric-icon orange">♙</span></div><div class="metric-value" id="metricClients">12</div><div class="metric-foot"><span class="positive">↑ 3 novos</span><span>neste mês</span></div><div class="metric-spark spark-orange"></div></article>
+          </div>
+          <div class="dashboard-grid">
+            <article class="panel revenue-panel" data-finance-only><div class="panel-head"><div><h3>Desempenho financeiro</h3><p class="muted">Receitas e despesas ao longo do período</p></div><select id="chartPeriod" class="dark-select"><option value="6">Últimos 6 meses</option><option value="12">Últimos 12 meses</option></select></div><div class="chart-wrap"><canvas id="revenueChart"></canvas></div></article>
+            <article class="panel" data-finance-only><div class="panel-head"><div><h3>Composição financeira</h3><p class="muted">Distribuição do faturamento</p></div><button class="dots-btn">···</button></div><div class="donut-wrap"><canvas id="mixChart"></canvas><div class="donut-center"><b>R$ 8,4k</b><small>Recebidos</small></div></div><div class="legend-list"><div><i class="legend-dot violet-bg"></i><span>Sites e landing pages</span><b>68%</b></div><div><i class="legend-dot blue-bg"></i><span>Soluções digitais</span><b>22%</b></div><div><i class="legend-dot muted-bg"></i><span>Outros serviços</span><b>10%</b></div></div></article>
+          </div>
+          <article class="panel goal-panel" id="goalProgress" data-finance-only></article>
+          <div class="lower-grid">
+            <article class="panel"><div class="panel-head"><div><h3>Pipeline comercial</h3><p class="muted">Oportunidades por etapa</p></div><button class="text-btn" data-goto="crm">Ver CRM ↗</button></div><div class="pipeline" id="pipeline"></div></article>
+            <article class="panel"><div class="panel-head"><div><h3>Atividade recente</h3><p class="muted">Últimas movimentações registradas</p></div><button class="dots-btn">···</button></div><div class="activity-list" id="activityList"></div></article>
+          </div>
+        </section>
+
+        <section class="page" id="page-crm">
+          <div class="page-heading"><div><div class="eyebrow">RELACIONAMENTO</div><h1>CRM & Leads</h1><p class="muted">Organize oportunidades e acompanhe cada negociação.</p></div><button class="primary-btn" data-action="lead">＋ Adicionar lead</button></div>
+          <div class="mini-stats" id="crmStats"></div>
+          <div class="panel table-panel"><div class="panel-head"><div><h3>Oportunidades comerciais</h3><p class="muted">Base de contatos e negociações</p></div><input class="table-search" id="leadSearch" placeholder="⌕  Buscar empresa ou contato..."></div><div class="table-scroll"><table><thead><tr><th>EMPRESA / CONTATO</th><th>SERVIÇO</th><th>ORIGEM</th><th>RESPONSÁVEL</th><th>VALOR ESTIMADO</th><th>ETAPA</th></tr></thead><tbody id="leadsTable"></tbody></table></div></div>
+        </section>
+
+        <section class="page" id="page-sales">
+          <div class="page-heading"><div><div class="eyebrow">COMERCIAL</div><h1>Vendas</h1><p class="muted">Acompanhe contratos, conversões e metas comerciais.</p></div><button class="primary-btn" data-action="sale">＋ Registrar venda</button></div>
+          <div class="metric-grid compact-metrics" id="salesStats"></div>
+          <div class="panel table-panel"><div class="panel-head"><div><h3>Vendas registradas</h3><p class="muted">Histórico de negócios fechados</p></div></div><div class="table-scroll"><table><thead><tr><th>CLIENTE</th><th>SERVIÇO</th><th>DATA</th><th>VALOR</th><th>STATUS</th></tr></thead><tbody id="salesTable"></tbody></table></div></div>
+        </section>
+
+        <section class="page" id="page-finance">
+          <div class="page-heading"><div><div class="eyebrow">CONTROLE FINANCEIRO</div><h1>Financeiro</h1><p class="muted">Entradas, saídas, margem e previsibilidade de caixa.</p></div><button class="primary-btn" data-action="transaction">＋ Nova movimentação</button></div>
+          <div class="metric-grid compact-metrics" id="financeStats"></div>
+          <div class="dashboard-grid"><article class="panel"><div class="panel-head"><div><h3>Fluxo de caixa</h3><p class="muted">Entradas versus saídas</p></div></div><div class="chart-wrap"><canvas id="cashChart"></canvas></div></article><article class="panel"><div class="panel-head"><div><h3>Indicadores</h3><p class="muted">Resumo financeiro atual</p></div></div><div class="finance-breakdown" id="financeBreakdown"></div></article></div>
+          <div class="panel table-panel"><div class="panel-head"><div><h3>Movimentações</h3><p class="muted">Registro financeiro da agência</p></div></div><div class="table-scroll"><table><thead><tr><th>DESCRIÇÃO</th><th>CATEGORIA</th><th>DATA</th><th>TIPO</th><th>VALOR</th></tr></thead><tbody id="transactionsTable"></tbody></table></div></div>
+        </section>
+
+        <section class="page" id="page-projects">
+          <div class="page-heading"><div><div class="eyebrow">ENTREGAS</div><h1>Projetos</h1><p class="muted">Controle etapas, prazos e andamento das entregas.</p></div><button class="primary-btn" data-action="project">＋ Novo projeto</button></div>
+          <div class="project-grid" id="projectGrid"></div>
+        </section>
+
+        <section class="page" id="page-team">
+          <div class="page-heading"><div><div class="eyebrow">PESSOAS</div><h1>Equipe & Comissões</h1><p class="muted">Acompanhe responsabilidades, resultados e remuneração variável.</p></div><button class="primary-btn" data-goto="users">＋ Gerenciar acessos</button></div>
+          <div class="team-grid" id="teamGrid"></div>
+          <div class="panel table-panel"><div class="panel-head"><div><h3>Comissões comerciais</h3><p class="muted">Referência de 15% sobre vendas atribuídas e recebidas, conforme acordo.</p></div></div><div class="table-scroll"><table><thead><tr><th>RESPONSÁVEL</th><th>VENDA</th><th>VALOR RECEBIDO</th><th>COMISSÃO</th><th>STATUS</th></tr></thead><tbody id="commissionTable"></tbody></table></div></div>
+        </section>
+
+        <section class="page" id="page-reports">
+          <div class="page-heading"><div><div class="eyebrow">INTELIGÊNCIA DE NEGÓCIO</div><h1>Relatórios</h1><p class="muted">Leitura consolidada dos resultados da KOVA.</p></div><button class="secondary-btn" id="exportReport">↓ Baixar resumo CSV</button></div>
+          <div class="dashboard-grid"><article class="panel"><div class="panel-head"><div><h3>Receita por serviço</h3><p class="muted">Distribuição ilustrativa</p></div></div><div class="chart-wrap"><canvas id="serviceChart"></canvas></div></article><article class="panel"><div class="panel-head"><div><h3>Conversão comercial</h3><p class="muted">Visão do funil</p></div></div><div id="reportFunnel" class="report-funnel"></div></article></div>
+          <div class="panel insight-panel"><span class="metric-icon violet">✦</span><div><h3>Leitura gerencial</h3><p id="insightText">Os dados de demonstração mostram oportunidades em aberto. Registre movimentações reais para transformar este painel em uma visão confiável da operação.</p></div></div>
+        </section>
+
+        <section class="page" id="page-insights">
+          <div class="page-heading"><div><div class="eyebrow">INTELIGÊNCIA DA OPERAÇÃO</div><h1>KOVA INSIGHTS</h1><p class="muted">Indicadores calculados a partir dos registros do workspace.</p></div></div>
+          <div class="mini-stats" id="insightsExtra"></div>
+          <div class="panel insight-panel"><span class="metric-icon violet">✦</span><div><h3>Leitura estratégica</h3><p id="insightTextExtra">Registre seus dados para gerar indicadores.</p></div></div>
+          <div class="panel table-panel"><div class="panel-head"><div><h3>Histórico de atividades</h3><p class="muted">Trilha local de alterações realizadas no sistema</p></div></div><div class="table-scroll"><table><thead><tr><th>USUÁRIO</th><th>AÇÃO</th><th>DETALHE</th><th>DATA / HORA</th></tr></thead><tbody id="auditTable"></tbody></table></div></div>
+        </section>
+        <section class="page" id="page-notifications">
+          <div class="page-heading"><div><div class="eyebrow">CENTRAL DE ALERTAS</div><h1>Notificações</h1><p class="muted">Acompanhe pendências comerciais, financeiras e operacionais.</p></div></div>
+          <div class="panel activity-list notification-list" id="notificationList"></div>
+        </section>
+        <section class="page" id="page-users">
+          <div class="page-heading"><div><div class="eyebrow">CONTROLE DE ACESSO</div><h1>Usuários e permissões</h1><p class="muted">Gerencie os perfis autorizados a acessar o KOVA OS.</p></div><button class="primary-btn" data-action="user">＋ Novo usuário</button></div>
+          <div class="permission-note"><b>Proteção por perfil</b><span>O front-end restringe menus e ações para demonstração. A proteção real exige Supabase Auth e políticas RLS no banco. Usuários criados nesta tela são apenas registros informativos e não ganham login.</span></div>
+          <div class="panel table-panel"><div class="panel-head"><div><h3>Contas cadastradas</h3><p class="muted">Perfis e níveis de autorização</p></div></div><div class="table-scroll"><table><thead><tr><th>USUÁRIO</th><th>E-MAIL</th><th>PERFIL</th><th>ACESSO</th></tr></thead><tbody id="usersTable"></tbody></table></div></div>
+        </section>
+
+        <section class="page" id="page-settings">
+          <div class="page-heading"><div><div class="eyebrow">PREFERÊNCIAS</div><h1>Configurações</h1><p class="muted">Informações e parâmetros do workspace.</p></div></div>
+          <div class="settings-grid"><div class="panel setting-card"><span class="metric-icon violet">✳</span><h3>Identidade da agência</h3><p class="muted">KOVA AGENCYA · Digital Solutions</p><small>Workspace principal</small></div><div class="panel setting-card"><span class="metric-icon blue">⌘</span><h3>Moeda padrão</h3><p class="muted">Real brasileiro (BRL)</p><small>Valores apresentados em R$</small></div><div class="panel setting-card"><span class="metric-icon green">◈</span><h3>Comissão comercial</h3><p class="muted">15% conforme acordo</p><small>Sobre valores efetivamente recebidos · prazo conforme acordo</small></div><div class="panel setting-card"><span class="metric-icon orange">◷</span><h3>Ambiente</h3><p class="muted">Protótipo local com persistência no navegador</p><small>Para multiusuário, conectar Supabase Auth + RLS</small></div><div class="panel setting-card"><span class="metric-icon orange">!</span><h3>Dados demonstrativos</h3><p class="muted">Remova os registros fictícios antes de iniciar a operação real.</p><button class="secondary-btn" id="clearDemoData">Limpar dados de demonstração</button></div></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
+<script src="admin.js"></script>
+<script src="app.js"></script>
+  
+</body>
+</html>
